@@ -23,6 +23,7 @@
             <textarea id="message" type="text" class="form-control" placeholder="Message"></textarea>
             <br>
             <button id="send" class="btn btn-success">Send</button>
+            <button id="clear" type="button" class="btn btn-danger">Clear</button>
         </div>
 
         <div id="messages">
@@ -36,7 +37,12 @@
         $(() => {
             $("#send").click(() =>{
                 let message = { name: $('#name').val(), message: $('#message').val()};
+                $('#message').val('');
                 postMessage(message);
+            });
+
+            $("#clear").click(() =>{
+                $('#messages').empty();
             });
 
             getMessages();
@@ -49,13 +55,13 @@
         }
 
         function getMessages(){
-            $.get('https://cachachat.herokuapp.com/messages', (data) =>{
+            $.get('/messages', (data) =>{
                 data.forEach(addMessage);
             })
         }
 
         function postMessage(message){
-            $.post('https://cachachat.herokuapp.com/messages',message)
+            $.post('/messages',message)
         }
     </script>
 </body>
