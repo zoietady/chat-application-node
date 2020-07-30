@@ -18,6 +18,10 @@ app.use(express.static(__dirname));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+app.get('/', (req,res) => {
+    res.render('index');
+});
+
 app.get('/messages', (req,res) => {
     Message.find({}, (err, messages) =>{
         res.send(messages);
