@@ -14,7 +14,7 @@ mongoose.connect(`mongodb+srv://admin:${process.env.DB_PASSWORD}@chat.9rqhw.mong
     console.log('mongodb connection', err);
 })
 
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
